@@ -1,5 +1,6 @@
 package com.jojoldu.book.springboot.domain.posts;
 
+import com.jojoldu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor // Lombok Annotation - 기본 생성자 자동 추가 public Posts(){} 와 같은 효과
 @Entity // JPA Annotation - 주요 어노테이션 : 주요 어노테이션을 클래스에 가깝게 배치
 // Entity 어노테이션은 테이블과 링크될 클래스임을 나타냄.
-public class Posts { // 실제 DB의 Table 과 매칭될 클래스. Entity 클래스
+public class Posts extends BaseTimeEntity { // 실제 DB의 Table 과 매칭될 클래스. Entity 클래스
 
     @Id // 테이블의 PK 필드
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK 의 생성 규칙
@@ -35,6 +36,11 @@ public class Posts { // 실제 DB의 Table 과 매칭될 클래스. Entity 클�
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 
 }
