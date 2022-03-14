@@ -22,24 +22,28 @@ group 'com.jojoldu.book'
 version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
-//plugins {
-//    id 'java'
-//}
-//
-//group 'org.example'
-//version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-}
 
-//test {
-//    useJUnitPlatform()
-//}
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok:1.18.22')
+
+    // 스프링 부트용 Spring Data Jpa 추상화 라이브러리
+    // 스프링 부트 버전에 맞춰 자동으로 JPA 관련 라이브러리들의 버전 관리
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    // 인메모리 관계형 데이터베이스
+    // 별도 설치가 필요없이 프로젝트 의존성만드로 관리 가능
+    // 메모리에서 실행되므로 어플리케이션 재시작 할 때마다 초기화되어, 테스트 용도로 많이 사용됨.
+    implementation('com.h2database:h2')
+
+    //annotationProcessor('org.projectlombok:lombok')
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+}
