@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+// JUNIT 에 내장된 실행자 외에 다른 실행자를 실행. SpringRunner 라는 스프링 실행자 사용. 스프링 부트 테스트와 JUNIT 사이 연결자 역할
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = HelloController.class,
             excludeFilters = {

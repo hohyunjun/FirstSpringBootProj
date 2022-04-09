@@ -30,6 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
+// WebMvcTest 의 경우 JPA 기능이 정상 작동하지 않기 때문에 JPA 기능까지 한번에 테스트 할 경우 SpringBootTest와 TestRestTemplate을 활용한다
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PostsApiControllerTest {
 
@@ -46,7 +47,7 @@ public class PostsApiControllerTest {
     private WebApplicationContext context;
     private MockMvc mvc;
 
-    @Before
+    @Before // 매번 테스트가 시작되기 전에 MockMvc 인스턴스를 생성함.
     public void setup(){
         mvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity()).build();
     }
@@ -56,7 +57,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles="USER") // 임의로 사용자 인증 추가
     public void Posts_등록된다() throws Exception{
         // given
         String title = "title";
@@ -71,7 +72,7 @@ public class PostsApiControllerTest {
 
         // when
             //ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
-        mvc.perform(post(url)
+        mvc.perform(post(url) // 생성된 MockMvc 를 통해 API 를 테스함.
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
@@ -85,7 +86,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles="USER") // 임의로 사용자 인증 추가
     public void Posts_수정된다() throws Exception {
         //given
         Posts savedPosts = postsRepository.save(Posts.builder()

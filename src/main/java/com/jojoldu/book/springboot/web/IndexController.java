@@ -22,6 +22,8 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user){
+        // Model 에 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있음
+        // postsService.findAllDesc()로 가져온 결과를 posts 로 index.mustache 에 전달함.
         model.addAttribute("posts", postsService.findAllDesc());
         //SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null){
