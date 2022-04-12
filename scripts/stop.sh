@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-ABSPATH=$(readlink -f $0)
+ABSPATH=$(readlink -f $0) # 현재 stop.sh 파일의 절대경로 반환
 ABSDIR=$(dirname $ABSPATH)
-source ${ABSDIR}/profile.sh
+source ${ABSDIR}/profile.sh # profile.sh 를 import 한다고 보면 됨
 
 IDLE_PORT=$(find_idle_port)
 

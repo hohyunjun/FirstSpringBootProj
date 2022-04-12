@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# 엔진엑스와 연결되지 않은 포트로 스프링 부트가 잘 수행되었는지 확인함
+# 잘 떴는지 확인되어야 엔진엑스 프록시 설정을 변경함(switch_proxy 호출)
 
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
